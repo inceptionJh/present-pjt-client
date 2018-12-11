@@ -1,0 +1,11 @@
+.day {
+  flex: 1;
+  font-size: 20px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.day > div {
+  transform: translateY(80%);
+}
