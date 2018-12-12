@@ -1,9 +1,9 @@
 // @ts-check
-import React, { Component } from "react";
-import Hour from "./Hour/Hour";
-import Minute from "./Minute/Minute";
-import DayAndAmpm from "./DayAndAmpm/DayAndAmpm";
-import "./Clock.css";
+import React, { Component } from 'react';
+import Hour from './Hour/Hour';
+import Minute from './Minute/Minute';
+import DayAndAmpm from './DayAndAmpm/DayAndAmpm';
+import './Clock.css';
 
 export default class Clock extends Component {
   constructor(props) {
@@ -11,9 +11,9 @@ export default class Clock extends Component {
 
     this.state = {
       times: {
-        date: "00/00/0000",
-        hours: "00",
-        minutes: "0"
+        date: '00/00/0000',
+        hours: '00',
+        minutes: '0'
       }
     };
 
@@ -50,6 +50,7 @@ export default class Clock extends Component {
               : this.state.times.hours
           }
         />
+        :
         <Minute
           minute={
             Number(this.state.times.minutes) < 10
@@ -59,7 +60,7 @@ export default class Clock extends Component {
         />
         <DayAndAmpm
           day={this.state.times.date}
-          ampm={Number(this.state.times.hours) < 12 ? "AM" : "PM"}
+          ampm={Number(this.state.times.hours) < 12 ? 'AM' : 'PM'}
         />
       </div>
     );
