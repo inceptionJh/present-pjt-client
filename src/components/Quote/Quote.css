@@ -1,0 +1,11 @@
+.quote {
+  position: absolute;
+  left: 50%;
+  bottom: 3%;
+  width: 80%;
+  transform: translateX(-50%);
+  font-family: 'Exo 2', sans-serif;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
