@@ -171,7 +171,7 @@ class Quote extends Component {
   }
 
   render() {
-    return <div class="quote">{this.state.quote}</div>;
+    return <div className="quote">{this.state.quote}</div>;
   }
 }
 

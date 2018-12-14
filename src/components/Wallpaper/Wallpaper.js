@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Wallpaper.css';
 
 const wallpapers = [
   'https://source.unsplash.com/user/tkhwang/likes/1800x1300',
@@ -32,7 +33,7 @@ class Wallpaper extends Component {
   }
 
   render() {
-    return <img id="wallpaper" src={this.state.wallpaper} alt="wallpaper" />;
+    return <img className="wallpaper" src={this.state.wallpaper} alt="wallpaper" />;
   }
 }
 
