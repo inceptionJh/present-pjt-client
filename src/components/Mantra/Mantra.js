@@ -46,8 +46,8 @@ class Mantra extends Component {
 
   render() {
     return (
-      <div>
-        <p className="mantra">{this.state.mantra}</p>
+      <div className="mantra">
+        <p>{this.state.mantra}</p>
       </div>
     );
   }
