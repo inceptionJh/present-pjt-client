@@ -1,0 +1,5 @@
+.todo-nav {
+  flex: 1;
+  background-color: rgba(255,0,0, 0.3);
+  display: flex;
+}
