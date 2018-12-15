@@ -20,11 +20,13 @@ const userReducer = (state = initialState, action) => {
         fetchingUpdate: true
       };
     case LOGIN_SUCCESS:
+      console.log('[+] reducer - LOGIN_SUCCESS :', action);
       return {
         ...state,
         fetchingUpdate: false,
         isLoggedIn: true,
-        user: action.result
+        // user: action.result
+        user: action.result.data
       };
     case LOGIN_FAILURE:
       return {

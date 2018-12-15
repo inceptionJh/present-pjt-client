@@ -22,7 +22,7 @@ class Login extends Component {
     const { dispatch } = this.props;
     const email = this.email.value;
     const pw = this.password.value;
-    console.log(this.props);
+    // console.log(this.props);
 
     dispatch(login(email, pw));
   };
@@ -32,7 +32,7 @@ class Login extends Component {
     console.log(user);
 
     return user.isLoggedIn ? (
-      <div className="login">{user.user.data}</div>
+      <div className="login">{user.user.name}</div>
     ) : (
       <div className="login">
         <span>이메일</span>
