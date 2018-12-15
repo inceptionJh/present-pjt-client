@@ -22,6 +22,7 @@ const mantras = [
   'Be fearless.',
   'Remember who you are.'
 ];
+const MANTRA_UPDATE_TIME = 5 * 60 * 1000;
 
 class Mantra extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Mantra extends Component {
 
   componentDidMount() {
     this.generateRandomMantra();
-    setInterval(() => this.generateRandomMantra(), 5000);
+    setInterval(() => this.generateRandomMantra(), MANTRA_UPDATE_TIME);
   }
 
   generateRandomMantra() {
@@ -46,8 +47,8 @@ class Mantra extends Component {
 
   render() {
     return (
-      <div>
-        <p className="mantra">{this.state.mantra}</p>
+      <div className="mantra">
+        <p>{this.state.mantra}</p>
       </div>
     );
   }

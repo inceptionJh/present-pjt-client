@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Quote.css';
+const axios = require('axios');
 
 const computerQuotes = [
   '컴퓨터는 쓸모가 없다. 그것은 그냥 대답만 할 수 있다. (Pablo Picasso, 피카소는 92세까지 살았는데 65세에 ENIAC이 등장했다.)',
@@ -134,8 +135,7 @@ const computerQuotes = [
   '제프 딘은 그의 프로그래밍 수업을 ‘cat > /dev/mem’으로 시작한다.',
   '하루는 제프 딘이 나가면서 노트북 대신 Etch - a - Sketch를 들고 나간 적이 있다.진짜 노트북을 가지러 돌아오는 길에, 그는 Etch - a - Sketch로 테트리스를 할 수 있도록 프로그램했다.'
 ];
-
-const axios = require('axios');
+const QUOTE_UPDATE_TIME = 5 * 60 * 1000;
 
 class Quote extends Component {
   constructor(props) {
@@ -151,7 +151,7 @@ class Quote extends Component {
     // setInterval(() => this.getQuoteFromRandomQuote(), 10000);
 
     this.getQuoteFromComputerQuotes();
-    setInterval(() => this.getQuoteFromComputerQuotes(), 10000);
+    setInterval(() => this.getQuoteFromComputerQuotes(), QUOTE_UPDATE_TIME);
   };
 
   getQuoteFromRandomQuote() {
