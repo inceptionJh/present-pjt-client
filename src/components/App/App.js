@@ -7,6 +7,7 @@ import Quote from "../Quote/Quote";
 import Mantra from "../Mantra/Mantra";
 import Login from "../Login/Login";
 import Helloyou from "../Helloyou/Helloyou";
+import Weather from "../Weather/Weather";
 import Todo from "../Todo/Todo";
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
         <Mantra />
         <Quote />
         <Helloyou />
+        <Weather />
         <Todo />
       </div>
     );
