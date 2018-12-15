@@ -1,3 +1,5 @@
+import "./App.css";
+
 import React, { Component } from "react";
 import Clock from "../Clock/Clock";
 import Wallpaper from "../Wallpaper/Wallpaper";
@@ -6,7 +8,7 @@ import Mantra from "../Mantra/Mantra";
 import Login from "../Login/Login";
 import Helloyou from "../Helloyou/Helloyou";
 import Weather from "../Weather/Weather";
-import "./App.css";
+import Todo from "../Todo/Todo";
 
 class App extends Component {
   render() {
@@ -19,6 +21,7 @@ class App extends Component {
         <Quote />
         <Helloyou />
         <Weather />
+        <Todo />
       </div>
     );
   }

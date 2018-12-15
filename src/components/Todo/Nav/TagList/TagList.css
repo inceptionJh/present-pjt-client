@@ -1,0 +1,5 @@
+.todo-nav-taglist {
+  flex: 8;
+  display: flex;
+  flex-direction: row;
+}

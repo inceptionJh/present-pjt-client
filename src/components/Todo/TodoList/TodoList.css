@@ -1,0 +1,6 @@
+.todo-list {
+  flex: 8;
+  padding: 5px;
+  text-align: center;
+  overflow: auto;
+}
