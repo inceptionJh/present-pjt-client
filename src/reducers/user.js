@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 import {
-  login,
+  // login,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE
-} from '../actions/user.js';
+} from "../actions/user.js";
 
 const initialState = {
   isLoggedIn: false,
@@ -20,7 +20,7 @@ const userReducer = (state = initialState, action) => {
         fetchingUpdate: true
       };
     case LOGIN_SUCCESS:
-      console.log('[+] reducer - LOGIN_SUCCESS :', action);
+      console.log("[+] reducer - LOGIN_SUCCESS :", action);
       return {
         ...state,
         fetchingUpdate: false,
