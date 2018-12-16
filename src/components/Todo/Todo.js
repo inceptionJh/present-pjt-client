@@ -19,7 +19,7 @@ export default class Todo extends Component {
 
   handleInputOnEnter(e) {
     const ENTER_CODE = 13;
-    
+
     if (e.keyCode === ENTER_CODE) {
       const newTodos = this.state.todos.slice();
 

@@ -1,8 +1,8 @@
-import './TagList.css';
+import "./TagList.css";
 
-import React, { Component } from 'react';
-import TagMenu from './TagMenu/TagMenu';
-import TodoTag from './TodoTag/TodoTag';
+import React, { Component } from "react";
+import TagMenu from "./TagMenu/TagMenu";
+import TodoTag from "./TodoTag/TodoTag";
 
 export default class TagList extends Component {
   render() {
@@ -11,6 +11,6 @@ export default class TagList extends Component {
         <TodoTag />
         <TagMenu />
       </div>
-    )
+    );
   }
 }

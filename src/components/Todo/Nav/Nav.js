@@ -1,8 +1,8 @@
-import './Nav.css';
+import "./Nav.css";
 
-import React, { Component } from 'react'
-import TagList from './TagList/TagList';
-import Menu from './Menu/Menu';
+import React, { Component } from "react";
+import TagList from "./TagList/TagList";
+import Menu from "./Menu/Menu";
 
 export default class Nav extends Component {
   render() {
@@ -11,6 +11,6 @@ export default class Nav extends Component {
         <TagList />
         <Menu />
       </div>
-    )
+    );
   }
 }

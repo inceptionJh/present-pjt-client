@@ -1,13 +1,9 @@
-import './TodoTag.css';
+import "./TodoTag.css";
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class TodoTag extends Component {
   render() {
-    return (
-      <div className="todo-nav-taglist-todotag">
-        TodoTag
-      </div>
-    )
+    return <div className="todo-nav-taglist-todotag">TodoTag</div>;
   }
 }

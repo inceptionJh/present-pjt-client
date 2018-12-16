@@ -1,13 +1,9 @@
-import './TagMenu.css';
+import "./TagMenu.css";
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class TagMenu extends Component {
   render() {
-    return (
-      <div className="todo-nav-taglist-tagmenu">
-        TagMenu
-      </div>
-    )
+    return <div className="todo-nav-taglist-tagmenu">TagMenu</div>;
   }
 }

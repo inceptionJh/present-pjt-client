@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import reducer from '../reducers/user';
-import promiseMiddleware from '../middleware/promiseMiddleware.js';
+import { createStore, applyMiddleware, compose } from "redux";
+import reducer from "../reducers/user";
+import promiseMiddleware from "../middleware/promiseMiddleware.js";
 
 const createOurStore = initialState => {
   const composeEnhancers =
