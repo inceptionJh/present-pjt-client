@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default () => {
   return next => action => {
-    console.log('[*] promiseMiddleware : action = ', action);
+    console.log("[*] promiseMiddleware : action = ", action);
 
     const { promise, type, ...rest } = action;
-    console.log('[*] promiseMiddleware (before)');
+    console.log("[*] promiseMiddleware (before)");
 
     next({ ...rest, type: `${type}_REQUEST` });
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class LoginForm extends Component {
     const email = this.email.value;
     const password = this.password.value;
 
-    console.log('[+] Login/handleLogin : ', email, password);
+    console.log("[+] Login/handleLogin : ", email, password);
     console.log(login(email, password));
     login(email, password);
   }

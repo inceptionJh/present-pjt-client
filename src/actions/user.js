@@ -1,4 +1,4 @@
-const config = require('../config');
+import config from '../config';
 const { SERVER_URL } = config();
 
 export const LOGIN = 'LOGIN';
