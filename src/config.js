@@ -1,6 +1,7 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
-module.exports = function() {
+export default function() {
   console.log("[+] NODE_ENV =", process.env.REACT_APP_NODE_ENV);
 
   switch (process.env.REACT_APP_NODE_ENV) {
