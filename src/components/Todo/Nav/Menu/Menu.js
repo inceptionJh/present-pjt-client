@@ -1,13 +1,9 @@
-import './Menu.css';
+import "./Menu.css";
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class Menu extends Component {
   render() {
-    return (
-      <div className="todo-nav-menu">
-        Menu
-      </div>
-    )
+    return <div className="todo-nav-menu">Menu</div>;
   }
 }

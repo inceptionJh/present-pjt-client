@@ -1,5 +1,6 @@
-import React, { Component } from "react";
 import "./Weather.css";
+
+import React, { Component } from "react";
 
 export default class Weather extends Component {
   state = {
