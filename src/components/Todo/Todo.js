@@ -17,17 +17,40 @@ export default class Todo extends Component {
     this.handleOnDeleteClick = this.handleOnDeleteClick.bind(this);
   }
 
+  componentDidMount() {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function(todo) {
+      const todos = JSON.parse(this.responseText);
+      const uniqId = todos.reduce(
+        (accu, curr) => (accu.id > curr.id ? accu.id : curr.id) + 1,
+        { id: -1 }
+      );
+      todo.setState({ todos, uniqId });
+    }.bind(xhr, this);
+    xhr.open("GET", "http://localhost:5000/todo/all");
+    xhr.send();
+  }
+
   handleInputOnEnter(e) {
     const ENTER_CODE = 13;
 
     if (e.keyCode === ENTER_CODE) {
+      const todo = {
+        id: this.state.uniqId,
+        state: 0,
+        text: e.target.value
+      };
+
+      // send DB
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://localhost:5000/todo");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify(todo));
+
+      // change state
       const newTodos = this.state.todos.slice();
 
-      newTodos.push({
-        id: this.state.uniqId,
-        state: false,
-        text: e.target.value
-      });
+      newTodos.push(todo);
 
       e.target.value = "";
 
@@ -39,10 +62,19 @@ export default class Todo extends Component {
   }
 
   handleToggleCheck(id) {
+    const todo = this.state.todos.filter(todo => todo.id === id)[0];
+
+    // patch todo from server DB
+    const xhr = new XMLHttpRequest();
+    xhr.open("PATCH", "http://localhost:5000/todo");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(todo));
+
+    // change state
     const newTodos = this.state.todos.map(todo =>
       todo.id === id
-        ? { state: !todo.state, id: todo.id, text: todo.text }
-        : { state: todo.state, id: todo.id, text: todo.text }
+        ? { state: todo.state ? 0 : 1, id: todo.id, text: todo.text }
+        : todo
     );
 
     this.setState({
@@ -51,6 +83,13 @@ export default class Todo extends Component {
   }
 
   handleOnDeleteClick(id) {
+    // delete todo from server DB
+    const xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "http://localhost:5000/todo");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send({id});
+
+    // change state
     const newTodos = this.state.todos.filter(todo =>
       todo.id === id ? false : true
     );
