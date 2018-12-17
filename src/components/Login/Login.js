@@ -1,61 +1,44 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { login } from '../../actions/user';
-import './Login.css';
+// import './Login.css';
+import LoginComp from './LoginComp/LoginComp';
 
 class Login extends Component {
-  static propTypes = {
-    user: PropTypes.objectOf(PropTypes.any).isRequired,
-    dispatch: PropTypes.func.isRequired
-  };
-  constructor(props) {
-    super(props);
-
-    this.handleLogin = this.handleLogin.bind(this);
-  }
-
-  handleLogin = e => {
-    e.preventDefault();
-
-    const { dispatch } = this.props;
-    const email = this.email.value;
-    const pw = this.password.value;
-    // console.log(this.props);
-
-    dispatch(login(email, pw));
-  };
-
   render() {
-    const { user } = this.props;
-    console.log(user);
-
-    return user.isLoggedIn ? (
-      <div className="login">{user.user.name}</div>
-    ) : (
-      <div className="login">
-        <span>이메일</span>
-        <input
-          ref={ref => {
-            this.email = ref;
-          }}
-        />
-        <span>비밀번호</span>
-        <input
-          type="password"
-          ref={ref => {
-            this.password = ref;
-          }}
-        />
-        <button onClick={this.handleLogin}>Login</button>
-      </div>
-    );
+    let login;
+    if (
+      !this.props.userRegister.userRegister.isNameEntered &&
+      !this.props.userRegister.userRegister.isEmailEntered &&
+      !this.props.userRegister.userRegister.isPasswordEntered
+    ) {
+      const msg = "Hello, what's your name?";
+      login = <LoginComp msg={msg} stage="name" />;
+    } else if (
+      this.props.userRegister.userRegister.isNameEntered &&
+      !this.props.userRegister.userRegister.isEmailEntered &&
+      !this.props.userRegister.userRegister.isPasswordEntered
+    ) {
+      const msg = `What's your email, ${this.props.userRegister.user.name} ?`;
+      login = <LoginComp msg={msg} stage="email" />;
+    } else if (
+      this.props.userRegister.userRegister.isNameEntered &&
+      this.props.userRegister.userRegister.isEmailEntered &&
+      !this.props.userRegister.userRegister.isPasswordEntered
+    ) {
+      const msg = `What's your password ?`;
+      login = <LoginComp msg={msg} stage="password" />;
+    }
+    return <div className="login">{login}</div>;
   }
 }
 
+// export default Login;
 function mapStateToProps(state) {
-  return { user: state.user };
+  return {
+    user: state.user,
+    userRegister: state.userRegister
+  };
 }
 
 export default connect(mapStateToProps)(Login);
