@@ -1,39 +1,27 @@
-import './Login.css';
-
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
-import { login } from '../../actions/user';
-
-class Login extends Component {
-  static propTypes = {
-    user: PropTypes.objectOf(PropTypes.any).isRequired,
-    dispatch: PropTypes.func.isRequired
-  };
+class LoginForm extends Component {
   constructor(props) {
     super(props);
 
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleLogin = e => {
+  handleLogin(e) {
     e.preventDefault();
-
-    const { dispatch } = this.props;
+    const { login } = this.props;
     const email = this.email.value;
-    const pw = this.password.value;
-    // console.log(this.props);
+    const password = this.password.value;
 
-    dispatch(login(email, pw));
-  };
+    console.log('[+] Login/handleLogin : ', email, password);
+    console.log(login(email, password));
+    login(email, password);
+  }
 
   render() {
     const { user } = this.props;
-    console.log(user);
-
     return user.isLoggedIn ? (
-      <div className="login">{user.user.name}</div>
+      <div>로그인 성공</div>
     ) : (
       <div className="login">
         <span>이메일</span>
@@ -55,8 +43,4 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { user: state.user };
-}
-
-export default connect(mapStateToProps)(Login);
+export default LoginForm;

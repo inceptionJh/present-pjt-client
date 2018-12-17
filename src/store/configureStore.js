@@ -1,10 +1,19 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { createLogger } from 'redux-logger';
-import ReduxThunk from 'redux-thunk';
+import reducer from '../reducers/user';
+import promiseMiddleware from '../middleware/promiseMiddleware.js';
 
-import reducer from '../reducers';
+const createOurStore = initialState => {
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const enhancer = composeEnhancers(applyMiddleware(promiseMiddleware));
+  // const enhancer = compose(applyMiddleware(promiseMiddleware));
 
-const logger = createLogger();
-const store = createStore(reducer, applyMiddleware(logger, ReduxThunk));
+  return createStore(
+    reducer,
+    // initialState,
+    enhancer
+  );
+};
 
+var store = createOurStore();
 export default store;
