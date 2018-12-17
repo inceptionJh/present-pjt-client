@@ -1,10 +1,10 @@
-import './Login.css';
+import "./Login.css";
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import { login } from '../../actions/user';
+import { login } from "../../actions/user";
 
 class Login extends Component {
   static propTypes = {
