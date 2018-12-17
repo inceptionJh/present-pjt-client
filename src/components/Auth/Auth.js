@@ -1,16 +1,16 @@
-import "./Login.css";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-
-import { login } from "../../actions/user";
+import { login } from '../../actions/user';
+import './Auth.css';
 
 class Login extends Component {
   static propTypes = {
     user: PropTypes.objectOf(PropTypes.any).isRequired,
     dispatch: PropTypes.func.isRequired
   };
+
   constructor(props) {
     super(props);
 
@@ -33,9 +33,9 @@ class Login extends Component {
     console.log(user);
 
     return user.isLoggedIn ? (
-      <div className="login">{user.user.name}</div>
+      <div className="auth">{user.user.name}</div>
     ) : (
-      <div className="login">
+      <div className="auth">
         <span>이메일</span>
         <input
           ref={ref => {
