@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
 import './Helloyou.css';
+
+import React, { Component } from 'react';
 
 export default class Helloyou extends Component {
   constructor(props) {
@@ -18,12 +19,14 @@ export default class Helloyou extends Component {
 
   nameSave = e => {
     if (e.keyCode === 13) {
-      localStorage.setItem('userName', e.target.value);
+      localStorage.setItem('user', e.target.value);
       this.setState({
         name: e.target.value
       });
     } else if (e.keyCode === 27) {
-      this.setState({ name: localStorage.getItem('userName') });
+      this.setState({
+        name: localStorage.getItem('user')
+      });
     }
   };
 
