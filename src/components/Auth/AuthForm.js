@@ -20,7 +20,7 @@ class LoginForm extends Component {
 
   render() {
     const { user } = this.props;
-    return user.isLoggedIn ? (
+    return user.isSignin ? (
       <div>로그인 성공</div>
     ) : (
       <div className="login">

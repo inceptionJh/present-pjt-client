@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import "./Helloyou.css";
+import './Helloyou.css';
+
+import React, { Component } from 'react';
 
 export default class Helloyou extends Component {
   constructor(props) {
-    var findUser = localStorage.getItem("user");
+    var findUser = localStorage.getItem('user');
     super(props);
     this.state = {
-      name: ""
+      name: ''
     };
     if (findUser !== undefined) {
       this.state.name = findUser;
@@ -18,26 +19,26 @@ export default class Helloyou extends Component {
 
   nameSave = e => {
     if (e.keyCode === 13) {
-      localStorage.setItem("user", e.target.value);
+      localStorage.setItem('user', e.target.value);
       this.setState({
         name: e.target.value
       });
     } else if (e.keyCode === 27) {
       this.setState({
-        name: localStorage.getItem("user")
+        name: localStorage.getItem('user')
       });
     }
   };
 
   nameModify = () => {
     this.setState({
-      name: ""
+      name: ''
     });
   };
 
   render() {
     const style = {
-      all: "unset"
+      all: 'unset'
     };
     return (
       <div className="hello-you">
