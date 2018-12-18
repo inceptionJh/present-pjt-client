@@ -1,13 +1,11 @@
-import config from '../config';
-const { SERVER_URL } = config();
+// import config from '../config';
+// const { SERVER_URL } = config();
 
-export const LOGIN = 'LOGIN';
 export const REGISTER_NAME = 'REGISTER_NAME';
 export const REGISTER_EMAIL = 'REGISTER_EMAIL';
 export const REGISTER_PASSWORD = 'REGISTER_PASSWORD';
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILSURE';
+export const REGISTER_DONE = 'REGISTER_DONE';
+export const SIGNIN_DONE = 'SIGNIN_DONE';
 
 export const register_name = name => {
   return {
@@ -36,13 +34,20 @@ export const register_password = password => {
   };
 };
 
-export const login = (email, password) => {
+export const register_done = email => {
   return {
-    type: LOGIN,
-    promise: {
-      method: 'post',
-      url: SERVER_URL + '/signin',
-      data: { email, password }
+    type: REGISTER_DONE,
+    payload: {
+      email: email
+    }
+  };
+};
+
+export const signin_done = email => {
+  return {
+    type: SIGNIN_DONE,
+    payload: {
+      email: email
     }
   };
 };
