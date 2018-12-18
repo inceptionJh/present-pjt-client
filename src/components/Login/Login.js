@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// import './Login.css';
 import RegisterComp from './RegisterComp/RegisterComp';
 import SinginComp from './SigninComp/SigninComp';
-import { black } from 'ansi-colors';
 
 class Login extends Component {
   render() {
