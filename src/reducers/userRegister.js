@@ -1,12 +1,16 @@
+import { handleActions } from 'redux-actions';
 import {
   // login,
   REGISTER_NAME,
   REGISTER_EMAIL,
-  REGISTER_PASSWORD
-} from '../actions/user.js';
+  REGISTER_PASSWORD,
+  REGISTER_DONE,
+  SIGNIN_DONE
+} from '../actions/userRegister';
 
 const initialState = {
-  isRegistered: false,
+  isRegisteredIn: false,
+  isSignIn: false,
   userRegister: {
     isNameEntered: false,
     isEmailEntered: false,
@@ -19,15 +23,16 @@ const initialState = {
   }
 };
 
-const userRegisterReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case REGISTER_NAME:
+export default handleActions(
+  {
+    [REGISTER_NAME]: (state, action) => {
       return {
         ...state,
         userRegister: { ...state.userRegister, isNameEntered: true },
         user: { ...state.user, name: action.payload.name }
       };
-    case REGISTER_EMAIL:
+    },
+    [REGISTER_EMAIL]: (state, action) => {
       return {
         ...state,
         userRegister: {
@@ -39,18 +44,47 @@ const userRegisterReducer = (state = initialState, action) => {
           email: action.payload.email
         }
       };
-    case REGISTER_PASSWORD:
+    },
+    [REGISTER_PASSWORD]: (state, action) => {
       return {
         ...state,
-        isRegistered: true,
         userRegister: {
           ...state.userRegister,
           isPasswordEntered: true
+        },
+        user: {
+          ...state.user,
+          password: action.payload.password
         }
       };
-    default:
-      return state;
-  }
-};
+    },
+    [REGISTER_DONE]: (state, action) => {
+      return {
+        ...state,
+        isRegisteredIn: true
+      };
+    },
+    [SIGNIN_DONE]: (state, action) => {
+      return {
+        ...state,
+        isSignIn: true
+      };
+    }
+  },
+  initialState
+);
 
-export default userRegisterReducer;
+// const userRegisterReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case REGISTER_NAME:
+
+//     case REGISTER_EMAIL:
+//       r
+//     case REGISTER_PASSWORD:
+
+//     default:
+//       return state;
+//   }
+// };
+
+// export default userRegisterReducer;

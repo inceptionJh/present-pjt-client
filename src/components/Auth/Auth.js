@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/user';
 import './Auth.css';
 
-class Login extends Component {
+class Auth extends Component {
   static propTypes = {
     user: PropTypes.objectOf(PropTypes.any).isRequired,
     dispatch: PropTypes.func.isRequired
@@ -59,4 +59,4 @@ function mapStateToProps(state) {
   return { user: state.user };
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(Auth);

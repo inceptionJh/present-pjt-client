@@ -2,32 +2,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // import './Login.css';
-import LoginComp from './LoginComp/LoginComp';
+import RegisterComp from './RegisterComp/RegisterComp';
+import SinginComp from './SigninComp/SigninComp';
+import { black } from 'ansi-colors';
 
 class Login extends Component {
   render() {
     let login;
-    if (
-      !this.props.userRegister.userRegister.isNameEntered &&
-      !this.props.userRegister.userRegister.isEmailEntered &&
-      !this.props.userRegister.userRegister.isPasswordEntered
-    ) {
-      const msg = "Hello, what's your name?";
-      login = <LoginComp msg={msg} stage="name" />;
-    } else if (
-      this.props.userRegister.userRegister.isNameEntered &&
-      !this.props.userRegister.userRegister.isEmailEntered &&
-      !this.props.userRegister.userRegister.isPasswordEntered
-    ) {
-      const msg = `What's your email, ${this.props.userRegister.user.name} ?`;
-      login = <LoginComp msg={msg} stage="email" />;
-    } else if (
-      this.props.userRegister.userRegister.isNameEntered &&
-      this.props.userRegister.userRegister.isEmailEntered &&
-      !this.props.userRegister.userRegister.isPasswordEntered
-    ) {
-      const msg = `What's your password ?`;
-      login = <LoginComp msg={msg} stage="password" />;
+    // Registeration
+    if (!this.props.userRegister.isRegisteredIn) {
+      if (
+        !this.props.userRegister.userRegister.isNameEntered &&
+        !this.props.userRegister.userRegister.isEmailEntered &&
+        !this.props.userRegister.userRegister.isPasswordEntered
+      ) {
+        const msg = "Hello, what's your name?";
+        login = <RegisterComp msg={msg} stage="name" />;
+      } else if (
+        this.props.userRegister.userRegister.isNameEntered &&
+        !this.props.userRegister.userRegister.isEmailEntered &&
+        !this.props.userRegister.userRegister.isPasswordEntered
+      ) {
+        const msg = `What's your email, ${this.props.userRegister.user.name} ?`;
+        login = <RegisterComp msg={msg} stage="email" />;
+      } else if (
+        this.props.userRegister.userRegister.isNameEntered &&
+        this.props.userRegister.userRegister.isEmailEntered &&
+        !this.props.userRegister.userRegister.isPasswordEntered
+      ) {
+        const msg = `What's your password ?`;
+        login = <RegisterComp msg={msg} stage="password" />;
+      }
+      // Signing
+    } else {
+      login = <SinginComp msg="Welcome black! please login." />;
     }
     return <div className="login">{login}</div>;
   }
