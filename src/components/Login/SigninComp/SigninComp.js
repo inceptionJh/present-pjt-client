@@ -51,27 +51,31 @@ class SigninComp extends Component {
     return (
       <div className="loginComp">
         <h1>{this.props.msg}</h1>
-        <input
-          className="signinEmail"
-          type="text"
-          placeholder="email"
-          ref={ref => {
-            this.signinEmail = ref;
-          }}
-          value={this.state.email}
-          onChange={this.handleChangeEmail}
-        />
-        <input
-          className="signinPassword"
-          type="password"
-          ref={ref => {
-            this.signinPassword = ref;
-          }}
-          value={this.state.password}
-          placeholder="password"
-          onKeyDown={this.keyPress}
-          onChange={this.handleChangePassword}
-        />
+        <div>
+          <input
+            className="signinEmail"
+            type="text"
+            placeholder="email"
+            ref={ref => {
+              this.signinEmail = ref;
+            }}
+            value={this.state.email}
+            onChange={this.handleChangeEmail}
+          />
+        </div>
+        <div>
+          <input
+            className="signinPassword"
+            type="password"
+            ref={ref => {
+              this.signinPassword = ref;
+            }}
+            value={this.state.password}
+            placeholder="password"
+            onKeyDown={this.keyPress}
+            onChange={this.handleChangePassword}
+          />
+        </div>
       </div>
     );
   }

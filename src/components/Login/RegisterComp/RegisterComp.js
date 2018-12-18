@@ -46,12 +46,12 @@ class RegisterComp extends Component {
           name: this.input.value,
           value: ''
         });
-        localStorage.setItem('userName', this.state.name);
-        UserRegisterActions.register_name(this.state.name);
+        localStorage.setItem('userName', this.input.value);
+        UserRegisterActions.register_name(this.input.value);
       } else if (this.props.stage === 'email') {
         this.setState({ ...this.state, email: this.input.value, value: '' });
-        localStorage.setItem('userEmail', this.state.email);
-        UserRegisterActions.register_email(this.state.email);
+        localStorage.setItem('userEmail', this.input.value);
+        UserRegisterActions.register_email(this.input.value);
       } else if (this.props.stage === 'password') {
         this.setState({
           ...this.state,
