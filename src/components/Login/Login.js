@@ -7,29 +7,22 @@ import SinginComp from './SigninComp/SigninComp';
 class Login extends Component {
   render() {
     let login;
+    let { isRegisteredIn } = this.props.userRegister;
+    let {
+      isNameEntered,
+      isEmailEntered,
+      isPasswordEntered
+    } = this.props.userRegister.userRegister;
+
     // Registeration
-    if (!this.props.userRegister.isRegisteredIn) {
-      if (
-        !this.props.userRegister.userRegister.isNameEntered &&
-        !this.props.userRegister.userRegister.isEmailEntered &&
-        !this.props.userRegister.userRegister.isPasswordEntered
-      ) {
-        const msg = "Hello, what's your name?";
-        login = <RegisterComp msg={msg} stage="name" />;
-      } else if (
-        this.props.userRegister.userRegister.isNameEntered &&
-        !this.props.userRegister.userRegister.isEmailEntered &&
-        !this.props.userRegister.userRegister.isPasswordEntered
-      ) {
+    if (!isRegisteredIn) {
+      if (!isNameEntered && !isEmailEntered && !isPasswordEntered) {
+        login = <RegisterComp msg="Hello, what's your name?" stage="name" />;
+      } else if (isNameEntered && !isEmailEntered && !isPasswordEntered) {
         const msg = `What's your email, ${this.props.userRegister.user.name} ?`;
         login = <RegisterComp msg={msg} stage="email" />;
-      } else if (
-        this.props.userRegister.userRegister.isNameEntered &&
-        this.props.userRegister.userRegister.isEmailEntered &&
-        !this.props.userRegister.userRegister.isPasswordEntered
-      ) {
-        const msg = `What's your password ?`;
-        login = <RegisterComp msg={msg} stage="password" />;
+      } else if (isNameEntered && isEmailEntered && !isPasswordEntered) {
+        login = <RegisterComp msg="What's your password ?" stage="password" />;
       }
       // Signing
     } else {
@@ -39,7 +32,6 @@ class Login extends Component {
   }
 }
 
-// export default Login;
 function mapStateToProps(state) {
   return {
     user: state.user,
