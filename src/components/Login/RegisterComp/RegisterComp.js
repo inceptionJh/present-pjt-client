@@ -1,0 +1,113 @@
+/* eslint-disable import/first */
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+// import PropTypes from 'prop-types';
+
+// import config from '../../../config';
+// const { SERVER_URL } = config();
+// import {
+//   register_name,
+//   register_email,
+//   register_password
+// } from '../../../actions/userRegister';
+import * as postActions from '../../../actions/userAuth';
+import * as userRegisterActions from '../../../actions/userRegister';
+import './RegisterComp.css';
+
+class RegisterComp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+      name: '',
+      email: '',
+      password: ''
+    };
+
+    this.keyPress = this.keyPress.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  keyPress(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      this.setState({
+        value: ''
+      });
+      const { PostActions, UserRegisterActions } = this.props;
+      if (this.props.stage === 'name') {
+        this.setState({
+          ...this.state,
+          name: this.input.value,
+          value: ''
+        });
+        localStorage.setItem('userName', this.state.name);
+        UserRegisterActions.register_name(this.state.name);
+      } else if (this.props.stage === 'email') {
+        this.setState({ ...this.state, email: this.input.value, value: '' });
+        localStorage.setItem('userEmail', this.state.email);
+        UserRegisterActions.register_email(this.state.email);
+      } else if (this.props.stage === 'password') {
+        this.setState({
+          ...this.state,
+          password: this.input.value,
+          value: ''
+        });
+        localStorage.setItem('userPassword', this.input.value);
+        UserRegisterActions.register_password(this.input.value);
+        // TODO: this.state.password is not updated at this point due to async behavior.
+        PostActions.getPost({
+          url: '/signup/',
+          data: { email: this.state.email, password: this.input.value }
+        })
+          .then(response => {
+            console.log('[+] /signup : success.');
+            console.log(response);
+            UserRegisterActions.register_done(this.state.email);
+          })
+          .catch(error => console.log(error));
+      }
+    }
+  }
+
+  render() {
+    return (
+      <div className="registerComp">
+        <h1>{this.props.msg}</h1>
+        <input
+          className="login-input"
+          ref={ref => {
+            this.input = ref;
+          }}
+          value={this.state.value}
+          onKeyDown={this.keyPress}
+          onChange={this.handleChange}
+        />
+      </div>
+    );
+  }
+}
+
+// function mapStateToProps(state) {
+//   return { user: state.user };
+// }
+
+// RegisterComp.propTypes = {
+//   user: PropTypes.objectOf(PropTypes.any).isRequired,
+//   dispatch: PropTypes.func.isRequired
+// };
+
+export default connect(
+  state => ({
+    user: state.user
+  }),
+  dispatch => ({
+    UserRegisterActions: bindActionCreators(userRegisterActions, dispatch),
+    PostActions: bindActionCreators(postActions, dispatch)
+  })
+)(RegisterComp);
