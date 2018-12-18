@@ -15,7 +15,14 @@ class Login extends Component {
     } = this.props.userRegister.userRegister;
 
     // Registeration
-    if (!isRegisteredIn) {
+    const userName = localStorage.getItem('userName');
+    console.log(userName);
+
+    // Signin
+    if (isRegisteredIn || userName) {
+      login = <SinginComp msg="Welcome black! please login." />;
+      // Registration
+    } else {
       if (!isNameEntered && !isEmailEntered && !isPasswordEntered) {
         login = <RegisterComp msg="Hello, what's your name?" stage="name" />;
       } else if (isNameEntered && !isEmailEntered && !isPasswordEntered) {
@@ -24,9 +31,6 @@ class Login extends Component {
       } else if (isNameEntered && isEmailEntered && !isPasswordEntered) {
         login = <RegisterComp msg="What's your password ?" stage="password" />;
       }
-      // Signing
-    } else {
-      login = <SinginComp msg="Welcome black! please login." />;
     }
     return <div className="login">{login}</div>;
   }
