@@ -1,7 +1,7 @@
-import "./Todo.css";
+import './Todo.css';
 
-import React, { Component } from "react";
-import TodoList from "./TodoList/TodoList";
+import React, { Component } from 'react';
+import TodoList from './TodoList/TodoList';
 
 export default class Todo extends Component {
   constructor(props) {
@@ -9,12 +9,14 @@ export default class Todo extends Component {
 
     this.state = {
       todos: [],
-      uniqId: 0
+      uniqId: 0,
+      container: 'todo-container-v'
     };
 
     this.handleInputOnEnter = this.handleInputOnEnter.bind(this);
     this.handleToggleCheck = this.handleToggleCheck.bind(this);
     this.handleOnDeleteClick = this.handleOnDeleteClick.bind(this);
+    this.todoClick = this.todoClick.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +29,7 @@ export default class Todo extends Component {
       );
       todo.setState({ todos, uniqId });
     }.bind(xhr, this);
-    xhr.open("GET", "http://localhost:5000/todo/all");
+    xhr.open('GET', 'http://localhost:5000/todo/all');
     xhr.send();
   }
 
@@ -43,8 +45,8 @@ export default class Todo extends Component {
 
       // send DB
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://localhost:5000/todo");
-      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.open('POST', 'http://localhost:5000/todo');
+      xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify(todo));
 
       // change state
@@ -52,7 +54,7 @@ export default class Todo extends Component {
 
       newTodos.push(todo);
 
-      e.target.value = "";
+      e.target.value = '';
 
       this.setState({
         todos: newTodos,
@@ -66,8 +68,8 @@ export default class Todo extends Component {
 
     // patch todo from server DB
     const xhr = new XMLHttpRequest();
-    xhr.open("PATCH", "http://localhost:5000/todo");
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.open('PATCH', 'http://localhost:5000/todo');
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(todo));
 
     // change state
@@ -85,9 +87,9 @@ export default class Todo extends Component {
   handleOnDeleteClick(id) {
     // delete todo from server DB
     const xhr = new XMLHttpRequest();
-    xhr.open("DELETE", "http://localhost:5000/todo");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send({id});
+    xhr.open('DELETE', 'http://localhost:5000/todo');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send({ id });
 
     // change state
     const newTodos = this.state.todos.filter(todo =>
@@ -99,20 +101,41 @@ export default class Todo extends Component {
     });
   }
 
+  todoClick() {
+    if (this.state.container === 'todo-container-v') {
+      this.setState({
+        container: 'todo-container-x'
+      });
+    } else {
+      this.setState({
+        container: 'todo-container-v'
+      });
+    }
+  }
+
   render() {
     return (
-      <div className="todo">
-        <TodoList
-          todos={this.state.todos}
-          handleToggleCheck={this.handleToggleCheck}
-          handleOnDeleteClick={this.handleOnDeleteClick}
-        />
-        <input
-          className="inputBtn"
-          type="text"
-          onKeyUp={this.handleInputOnEnter}
-          placeholder={"new TODO"}
-        />
+      <div>
+        <div className={this.state.container}>
+          <div className="todo">
+            <TodoList
+              todos={this.state.todos}
+              handleToggleCheck={this.handleToggleCheck}
+              handleOnDeleteClick={this.handleOnDeleteClick}
+            />
+            <input
+              className="inputBtn"
+              type="text"
+              onKeyUp={this.handleInputOnEnter}
+              placeholder={'new TODO'}
+            />
+          </div>
+        </div>
+
+        <div className="button-1" onClick={this.todoClick}>
+          <a>To do</a>
+          <div className="eff-1" />
+        </div>
       </div>
     );
   }
