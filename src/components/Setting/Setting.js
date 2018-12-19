@@ -21,7 +21,6 @@ export default class Setting extends Component {
   }
 
   handleCpnChangeState(event) {
-    console.log(event.target);
     this.setState({
       checkedState: this.state.checkedState ? false : true
     });
