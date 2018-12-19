@@ -1,6 +1,6 @@
-import "./Weather.css";
+import './Weather.css';
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class Weather extends Component {
   state = {
@@ -26,7 +26,7 @@ export default class Weather extends Component {
   }
 
   getWeather = (lat, long) => {
-    const API_KEY = "c82c6c9ea608c03b953323d802166401";
+    const API_KEY = 'c82c6c9ea608c03b953323d802166401';
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`
     )
@@ -44,7 +44,7 @@ export default class Weather extends Component {
 
   render() {
     return (
-      <div className="weather-main">
+      <div className="weather">
         <div className="weather-top">
           <img
             className="weather-img"
@@ -52,7 +52,7 @@ export default class Weather extends Component {
             alt="icon"
           />
           <div className="weather-temperature">
-            <span>{this.state.temperature}</span>
+            <span>{this.state.temperature + ' ℃'}</span>
           </div>
         </div>
 

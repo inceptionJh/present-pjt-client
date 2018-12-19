@@ -3,6 +3,7 @@ import './App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 import Weather from '../Weather/Weather';
 import Clock from '../Clock/Clock';
 import Wallpaper from '../Wallpaper/Wallpaper';
@@ -12,13 +13,16 @@ import Helloyou from '../Helloyou/Helloyou';
 import Todo from '../Todo/Todo';
 import Login from '../Login/Login';
 import Setting from '../Setting/Setting';
+import Search from '../Search/Search';
+// import userRegisterReducer from '../../reducers/userRegister';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Wallpaper />
-        {this.props.userRegister.isSignIn ? (
+        {!this.props.userRegister.isSignIn ? (
           <div>
             <Clock />
             <Mantra />
@@ -27,6 +31,7 @@ class App extends Component {
             <Weather />
             <Todo />
             <Setting />
+            <Search />
           </div>
         ) : (
           <Login />
