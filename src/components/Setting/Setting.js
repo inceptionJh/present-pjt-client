@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import './Setting.css';
 // import Toggle from "react-toggle-component";
 // import "react-toggle-component/styles.css";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as settingActions from '../../actions/setting';
 
-export default class Setting extends Component {
+class Setting extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +24,10 @@ export default class Setting extends Component {
   }
 
   handleCpnChangeState(event) {
+    const { SettingActions } = this.props;
+
+    SettingActions.setting_clock_disable();
+    console.log(event.target);
     this.setState({
       checkedState: this.state.checkedState ? false : true
     });
@@ -58,3 +65,12 @@ export default class Setting extends Component {
     );
   }
 }
+
+export default connect(
+  state => ({
+    setting: state.setting
+  }),
+  dispatch => ({
+    SettingActions: bindActionCreators(settingActions, dispatch)
+  })
+)(Setting);
