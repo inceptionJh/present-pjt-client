@@ -27,11 +27,33 @@ class RegisterComp extends Component {
 
     this.keyPress = this.keyPress.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.wasPostDoneSucccessfully = this.wasPostDoneSucccessfully.bind(this);
+    this.getPost = this.getPost.bind(this);
   }
 
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
+
+  wasPostDoneSucccessfully = props => {
+    const { pending, error } = props.user;
+    console.log(
+      `[+] wasPostDoneSucccessfully: pending = ${pending}, error = ${error}`
+    );
+
+    if (pending === false && error === false) return true;
+    else return false;
+  };
+
+  getPost = async payload => {
+    const { PostActions } = this.props;
+
+    try {
+      await PostActions.getPost(payload);
+    } catch (e) {
+      console.log(new Error(e));
+    }
+  };
 
   keyPress(e) {
     if (e.keyCode === 13) {
@@ -61,16 +83,18 @@ class RegisterComp extends Component {
         localStorage.setItem('userPassword', this.input.value);
         UserRegisterActions.register_password(this.input.value);
         // TODO: this.state.password is not updated at this point due to async behavior.
-        PostActions.getPost({
+        this.getPost({
           url: '/signup/',
           data: { email: this.state.email, password: this.input.value }
         })
           .then(response => {
-            console.log('[+] /signup : success.');
-            console.log(response);
-            UserRegisterActions.register_done(this.state.email);
+            const { UserRegisterActions } = this.props;
+
+            if (this.wasPostDoneSucccessfully(this.props)) {
+              UserRegisterActions.register_done(this.state.email);
+            }
           })
-          .catch(error => console.log(error));
+          .catch(error => console.log('error', error));
       }
     }
   }

@@ -25,25 +25,28 @@ export const getPost = payload => dispatch => {
     .then(response => {
       dispatch({
         type: GET_POST_SUCCESS,
-        result: {
-          name: response
+        payload: {
+          data: response.data,
+          error: ''
         }
       });
-      return {
-        type: GET_POST_SUCCESS,
-        result: { name: response }
-      };
+      // return {
+      //   type: GET_POST_SUCCESS,
+      //   result: { name: response }
+      // };
     })
     .catch(error => {
-      console.log(error);
       dispatch({
         type: GET_POST_FAILURE,
-        payload: error
+        payload: {
+          data: '',
+          error: error.response.data
+        }
       });
-      return {
-        type: GET_POST_FAILURE,
-        payload: error
-      };
+      // return {
+      //   type: GET_POST_FAILURE,
+      //   payload: error
+      // };
 
       /*
       // if (error.response.data.error === 'NEED-TO-SIGNUP') {

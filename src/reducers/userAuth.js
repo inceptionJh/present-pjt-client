@@ -9,8 +9,8 @@ const initialState = {
   pending: false,
   error: false,
   data: {
-    title: '',
-    body: ''
+    name: '',
+    error: ''
   }
 };
 
@@ -19,19 +19,17 @@ export default handleActions(
     [GET_POST_PENDING]: (state, action) => {
       return {
         ...state,
-        pending: true,
-        error: false
+        pending: true
       };
     },
     [GET_POST_SUCCESS]: (state, action) => {
-      const { user } = action.result.name;
-      // console.log('[+] ')
-
       return {
         ...state,
         pending: false,
+        error: false,
         data: {
-          name: user
+          ...state.data,
+          name: action
         }
       };
     },
@@ -39,7 +37,11 @@ export default handleActions(
       return {
         ...state,
         pending: false,
-        error: action.result
+        error: true,
+        data: {
+          ...state.data,
+          error: action
+        }
       };
     }
   },

@@ -15,12 +15,11 @@ class Login extends Component {
     } = this.props.userRegister.userRegister;
 
     // Registeration
-    const userName = localStorage.getItem('userName');
-    console.log(userName);
+    const userPassword = localStorage.getItem('userPassword');
 
     // Signin
-    if (isRegisteredIn || userName) {
-      login = <SinginComp msg="Welcome black! please login." />;
+    if (isRegisteredIn || userPassword) {
+      login = <SinginComp msg="Welcome back! Please login." />;
       // Registration
     } else {
       if (!isNameEntered && !isEmailEntered && !isPasswordEntered) {
