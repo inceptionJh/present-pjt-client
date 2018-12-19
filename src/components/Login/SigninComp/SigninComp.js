@@ -12,12 +12,15 @@ class SigninComp extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     };
 
     this.keyPress = this.keyPress.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.getPost = this.getPost.bind(this);
+    this.wasPostDoneSucccessfully = this.wasPostDoneSucccessfully.bind(this);
   }
 
   handleChangeEmail(e) {
@@ -28,22 +31,42 @@ class SigninComp extends Component {
     this.setState({ password: e.target.value });
   }
 
+  getPost = async payload => {
+    const { PostActions } = this.props;
+
+    try {
+      await PostActions.getPost(payload);
+    } catch (e) {
+      console.log(new Error(e));
+    }
+  };
+
+  wasPostDoneSucccessfully = props => {
+    const { pending, error } = props.user;
+    console.log(
+      `[+] wasPostDoneSucccessfully: pending = ${pending}, error = ${error}`
+    );
+
+    if (pending === false && error === false) return true;
+    else return false;
+  };
+
   keyPress(e) {
     if (e.keyCode === 13) {
       e.preventDefault();
 
-      const { PostActions, UserRegisterActions } = this.props;
-
-      PostActions.getPost({
+      this.getPost({
         url: '/signin/',
         data: { email: this.state.email, password: this.state.password }
       })
         .then(response => {
-          console.log('[+] /signup : success.');
-          console.log(response);
-          UserRegisterActions.signin_done(this.state.email);
+          const { UserRegisterActions } = this.props;
+
+          if (this.wasPostDoneSucccessfully(this.props)) {
+            UserRegisterActions.signin_done(this.state.email);
+          }
         })
-        .catch(error => console.log(error));
+        .catch(error => console.log('error', error));
     }
   }
 
@@ -51,6 +74,7 @@ class SigninComp extends Component {
     return (
       <div className="loginComp">
         <h1>{this.props.msg}</h1>
+        <h4 className="signError">{this.state.error}</h4>
         <div>
           <input
             className="signinEmail"
@@ -81,18 +105,10 @@ class SigninComp extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return { user: state.user };
-// }
-
-// SigninComp.propTypes = {
-//   user: PropTypes.objectOf(PropTypes.any).isRequired,
-//   dispatch: PropTypes.func.isRequired
-// };
-
 export default connect(
   state => ({
-    user: state.user
+    user: state.user,
+    userRegister: state.userRegister
   }),
   dispatch => ({
     UserRegisterActions: bindActionCreators(userRegisterActions, dispatch),
