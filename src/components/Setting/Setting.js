@@ -10,6 +10,7 @@ class Setting extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      container: 'setting-container-v',
       checkedState: {
         auth: true,
         clock: true,
@@ -21,6 +22,7 @@ class Setting extends Component {
       }
     };
     this.handleCpnChangeState = this.handleCpnChangeState.bind(this);
+    this.settingClick = this.settingClick.bind(this);
   }
 
   handleCpnChangeState(event) {
@@ -33,34 +35,56 @@ class Setting extends Component {
     });
   }
 
+  settingClick() {
+    if (this.state.container === 'setting-container-v') {
+      this.setState({
+        container: 'setting-container-x'
+      });
+    } else {
+      this.setState({
+        container: 'setting-container-v'
+      });
+    }
+  }
+
   render() {
     return (
-      <div className="setting">
-        {/* mantra */}
-        <div className="setting-container">
-          <div className="setting-item">Mantra</div>
-          <div className="setting-btn">
-            <input
-              className="apple-switch"
-              type="checkbox"
-              onChange={this.handleCpnChangeState}
-              checked={this.state.checkedState.mantra}
-            />
+      <div>
+        <div className={this.state.container}>
+          {/* mantra */}
+          <div className="setting">
+            <div className="setting-container">
+              <div className="setting-item">Mantra</div>
+              <div className="setting-btn">
+                <input
+                  className="apple-switch"
+                  type="checkbox"
+                  onChange={this.handleCpnChangeState}
+                  checked={this.state.checkedState.mantra}
+                />
+              </div>
+            </div>
+
+            {/* quote */}
+            <div className="setting-container">
+              <div className="setting-item">Quote</div>
+              <div className="setting-btn">
+                <input
+                  className="apple-switch"
+                  type="checkbox"
+                  onChange={this.handleCpnChangeState}
+                  checked={this.state.checkedState.quote}
+                />
+              </div>
+            </div>
           </div>
+          {/* new */}
         </div>
-        {/* quote */}
-        <div className="setting-container">
-          <div className="setting-item">Quote</div>
-          <div className="setting-btn">
-            <input
-              className="apple-switch"
-              type="checkbox"
-              onChange={this.handleCpnChangeState}
-              checked={this.state.checkedState.quote}
-            />
-          </div>
+
+        <div className="button-2" onClick={this.settingClick}>
+          <a>Setting</a>
+          <div className="eff-2" />
         </div>
-        {/* new */}
       </div>
     );
   }

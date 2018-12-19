@@ -102,7 +102,6 @@ export default class Todo extends Component {
   }
 
   todoClick() {
-    console.log('1');
     if (this.state.container === 'todo-container-v') {
       this.setState({
         container: 'todo-container-x'
