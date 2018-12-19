@@ -11,7 +11,7 @@
     
     display: flex;
     flex-direction: column; 
-
+    
     font-family: "Exo 2", sans-serif;
     color: white;
     font-size: 20px;
@@ -21,24 +21,39 @@
   .setting-container{
     display: flex;
     flex-direction: row;
-}
-
-.setting-item{
-    flex:1;
+    width: 250px;
+    height: 35px;
+  }
+  
+  .setting-item{
+    flex:2;
     text-align: left;
-    margin-left : 10px;
+    margin-left : 15px;
     margin-top : auto;
     margin-bottom: auto;
   }
+
+  .setting-btn{
+    flex:1;
+    flex-direction: column;
+    margin-right : 8px;
+    margin-top : auto;
+    margin-bottom: auto;
+  }
+
   
   input.apple-switch {
     display:block;
+    margin-top : auto;
+    margin-bottom: auto;
+    margin-left: 30px;
     appearance: none; outline: none;
-    width: 50px; 
-    height: 30px;
+    width: 40px; 
+    height: 20px;
     background-color: #ffffff; border: 1px solid #D9DADC;
     border-radius: 50px; box-shadow: inset -20px 0 0 0 #808080;
     transition-duration: 200ms;
+    
    }
 
    input.apple-switch:checked {

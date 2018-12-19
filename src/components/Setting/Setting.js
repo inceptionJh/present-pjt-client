@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./Setting.css";
+import React, { Component } from 'react';
+import './Setting.css';
 // import Toggle from "react-toggle-component";
 // import "react-toggle-component/styles.css";
 
@@ -7,8 +7,7 @@ export default class Setting extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: true,
-      cpnState: {
+      checkedState: {
         auth: true,
         clock: true,
         mantra: true,
@@ -21,28 +20,41 @@ export default class Setting extends Component {
     this.handleCpnChangeState = this.handleCpnChangeState.bind(this);
   }
 
-  handleCpnChangeState() {
-    console.log(!this.state.checked);
+  handleCpnChangeState(event) {
+    console.log(event.target);
     this.setState({
-      checked: this.state.checked ? false : true
+      checkedState: this.state.checkedState ? false : true
     });
   }
 
   render() {
     return (
       <div className="setting">
+        {/* mantra */}
         <div className="setting-container">
-          <div className="setting-item">Setting</div>
-          <div>
+          <div className="setting-item">Mantra</div>
+          <div className="setting-btn">
             <input
               className="apple-switch"
               type="checkbox"
               onChange={this.handleCpnChangeState}
-              checked={this.state.checked}
+              checked={this.state.checkedState.mantra}
             />
           </div>
         </div>
-        {/* <Toggle label="Click me" /> */}
+        {/* quote */}
+        <div className="setting-container">
+          <div className="setting-item">Quote</div>
+          <div className="setting-btn">
+            <input
+              className="apple-switch"
+              type="checkbox"
+              onChange={this.handleCpnChangeState}
+              checked={this.state.checkedState.quote}
+            />
+          </div>
+        </div>
+        {/* new */}
       </div>
     );
   }
