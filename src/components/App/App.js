@@ -17,17 +17,26 @@ import Search from '../Search/Search';
 
 class App extends Component {
   render() {
+    const {
+      isClockEnable,
+      isMantraEnable,
+      isQuoteEnable,
+      isHelloyouEnable,
+      isWeatherEnable,
+      isTodoEnable
+    } = this.props.setting;
+
     return (
       <div className="App">
         <Wallpaper />
         {this.props.userRegister.isSignIn ? (
           <div>
-            <Clock />
-            <Mantra />
-            <Quote />
-            <Helloyou />
-            <Weather />
-            <Todo />
+            {isClockEnable && <Clock />}
+            {isMantraEnable && <Mantra />}
+            {isQuoteEnable && <Quote />}
+            {isHelloyouEnable && <Helloyou />}
+            {isWeatherEnable && <Weather />}
+            {isTodoEnable && <Todo />}
             <Setting />
             <Search />
           </div>
@@ -42,7 +51,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    userRegister: state.userRegister
+    userRegister: state.userRegister,
+    setting: state.setting
   };
 }
 
