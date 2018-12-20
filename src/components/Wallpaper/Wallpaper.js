@@ -14,7 +14,7 @@ const wallpapers = [
   'https://i.pinimg.com/originals/7f/ae/02/7fae02ba19131bf9a71fc2788d4e4dcc.jpg'
 ];
 
-const PHOTO_UPDATE_DURATION = 60000;
+// const PHOTO_UPDATE_DURATION = 60000;
 
 class Wallpaper extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class Wallpaper extends Component {
   render() {
     return (
       // <img className="wallpaper" src={this.state.wallpaper} alt="wallpaper" />
-      <div class="video-container wallpaper">
+      <div className="video-container wallpaper">
         <video loop autoPlay muted>
           <source
             src="https://s3.ap-northeast-2.amazonaws.com/present-video-new/8s1nok6ep6r1f65i34p2.hd.mp4"

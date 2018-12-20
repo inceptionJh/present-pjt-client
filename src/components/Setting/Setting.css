@@ -19,7 +19,7 @@
   border-radius: 5px;
 
   width: 250px;
-  height: 400px;
+  height: 250px;
 
   display: flex;
   flex-direction: column;
@@ -85,7 +85,7 @@ input.apple-switch:checked:after {
 .button-2 {
   width: 50px;
   height: 50px;
-  border: 2px solid black;
+  border: 2px solid white;
   font-family: 'Exo 2', sans-serif;
   float: left;
   text-align: center;
@@ -98,15 +98,17 @@ input.apple-switch:checked:after {
   /* margin:10px 10px 40px 0; */
 }
 
-.button-2 a {
-  font-size: 10 px;
-  color: black;
+.button-2 a{
+  font-size: 8 px;
+  color: white;
   text-decoration: none;
   font-family: 'Exo 2', sans-serif;
   line-height: 50px;
   transition: all .5s ease;
   z-index: 2;
   position: relative;
+  margin-top : auto;
+  margin-bottom: auto;
 }
 
 .eff-2 {
@@ -114,7 +116,7 @@ input.apple-switch:checked:after {
   height: 50px;
   top: -2px;
   right: -140px;
-  background: black;
+  background:black;
   position: absolute;
   transition: all .3s ease;
   z-index: 1;
@@ -125,5 +127,5 @@ input.apple-switch:checked:after {
 }
 
 .button-2:hover a {
-  color: #fff;
+  color: white;
 }
