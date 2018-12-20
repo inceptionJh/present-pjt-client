@@ -28,11 +28,11 @@ export default class Weather extends Component {
   getWeather = (lat, long) => {
     const API_KEY = 'c82c6c9ea608c03b953323d802166401';
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`
+      `http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}`
     )
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
+        console.log(data);
         this.setState({
           name: data.name,
           temperature: Math.ceil(data.main.temp - 273),
