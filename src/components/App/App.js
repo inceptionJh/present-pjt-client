@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <Wallpaper />
-        {this.props.userRegister.isSignIn ? (
+        {!this.props.userRegister.isSignIn ? (
           <div>
             {isClockEnable && <Clock />}
             {isMantraEnable && <Mantra />}
