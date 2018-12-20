@@ -11,7 +11,9 @@ import {
   SETTING_WEATHER_ENABLE,
   SETTING_WEATHER_DISABLE,
   SETTING_TODO_ENABLE,
-  SETTING_TODO_DISABLE
+  SETTING_TODO_DISABLE,
+  SETTING_SEARCH_ENABLE,
+  SETTING_SEARCH_DISABLE
 } from '../actions/setting';
 
 const initialState = {
@@ -20,7 +22,8 @@ const initialState = {
   isQuoteEnable: true,
   isHelloyouEnable: true,
   isWeatherEnable: true,
-  isTodoEnable: true
+  isTodoEnable: true,
+  isSearchEnable: true
 };
 
 export default handleActions(
@@ -60,6 +63,12 @@ export default handleActions(
     },
     [SETTING_TODO_DISABLE]: (state, action) => {
       return { ...state, isTodoEnable: false };
+    },
+    [SETTING_SEARCH_ENABLE]: (state, action) => {
+      return { ...state, isSearchEnable: true };
+    },
+    [SETTING_SEARCH_DISABLE]: (state, action) => {
+      return { ...state, isSearchEnable: false };
     }
   },
   initialState

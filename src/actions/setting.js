@@ -10,6 +10,8 @@ export const SETTING_WEATHER_ENABLE = 'SETTING_WEATHER_ENABLE';
 export const SETTING_WEATHER_DISABLE = 'SETTING_WEATHER_DISABLE';
 export const SETTING_TODO_ENABLE = 'SETTING_TODO_ENABLE';
 export const SETTING_TODO_DISABLE = 'SETTING_TODO_DISABLE';
+export const SETTING_SEARCH_ENABLE = 'SETTING_SEARCH_ENABLE';
+export const SETTING_SEARCH_DISABLE = 'SETTING_SEARCH_DISABLE';
 
 export const setting_clock_enable = () => {
   return { type: SETTING_CLOCK_ENABLE };
@@ -57,4 +59,12 @@ export const setting_todo_enable = () => {
 
 export const setting_todo_disable = () => {
   return { type: SETTING_TODO_DISABLE };
+};
+
+export const setting_search_enable = () => {
+  return { type: SETTING_SEARCH_ENABLE };
+};
+
+export const setting_search_disable = () => {
+  return { type: SETTING_SEARCH_DISABLE };
 };
