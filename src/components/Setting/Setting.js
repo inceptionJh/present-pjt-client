@@ -18,7 +18,8 @@ class Setting extends Component {
         quote: true,
         helloyou: true,
         weather: true,
-        todo: true
+        todo: true,
+        search: true
       }
     };
     this.handleClockChangeState = this.handleClockChangeState.bind(this);
@@ -27,6 +28,7 @@ class Setting extends Component {
     this.handleHelloyouChangeState = this.handleHelloyouChangeState.bind(this);
     this.handleWeatherChangeState = this.handleWeatherChangeState.bind(this);
     this.handleTodoChangeState = this.handleTodoChangeState.bind(this);
+    this.handleSearchChangeState = this.handleSearchChangeState.bind(this);
 
     this.settingClick = this.settingClick.bind(this);
   }
@@ -175,6 +177,30 @@ class Setting extends Component {
     }
   }
 
+  handleSearchChangeState() {
+    const { SettingActions } = this.props;
+
+    if (this.state.checkedState.search) {
+      SettingActions.setting_search_disable();
+      this.setState({
+        ...this.state,
+        checkedState: {
+          ...this.state.checkedState,
+          search: false
+        }
+      });
+    } else {
+      SettingActions.setting_search_enable();
+      this.setState({
+        ...this.state,
+        checkedState: {
+          ...this.state.checkedState,
+          search: true
+        }
+      });
+    }
+  }
+
   settingClick() {
     if (this.state.container === 'setting-container-v') {
       this.setState({
@@ -266,6 +292,19 @@ class Setting extends Component {
                   type="checkbox"
                   onChange={this.handleTodoChangeState}
                   checked={this.state.checkedState.todo}
+                />
+              </div>
+            </div>
+
+            {/* search */}
+            <div className="setting-container">
+              <div className="setting-item">Search</div>
+              <div className="setting-btn">
+                <input
+                  className="apple-switch"
+                  type="checkbox"
+                  onChange={this.handleSearchChangeState}
+                  checked={this.state.checkedState.search}
                 />
               </div>
             </div>

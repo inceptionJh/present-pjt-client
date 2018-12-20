@@ -23,7 +23,8 @@ class App extends Component {
       isQuoteEnable,
       isHelloyouEnable,
       isWeatherEnable,
-      isTodoEnable
+      isTodoEnable,
+      isSearchEnable
     } = this.props.setting;
 
     return (
@@ -38,7 +39,7 @@ class App extends Component {
             {isWeatherEnable && <Weather />}
             {isTodoEnable && <Todo />}
             <Setting />
-            <Search />
+            {isSearchEnable && <Search />}
           </div>
         ) : (
           <Login />
