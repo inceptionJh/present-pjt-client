@@ -24,14 +24,18 @@ export default class Todo extends Component {
 
   componentDidMount() {
     const xhr = new XMLHttpRequest();
+
     xhr.onload = function(todo) {
-      const todos = todo instanceof Array ? JSON.parse(this.responseText) : [];
+      const res = JSON.parse(this.responseText);
+      const todos = res instanceof Array ? res : [];
+
       const uniqId = todos.reduce(
         (accu, curr) => (accu.id > curr.id ? accu.id : curr.id) + 1,
         { id: -1 }
       );
       todo.setState({ todos, uniqId });
     }.bind(xhr, this);
+
     xhr.open('GET', `${SERVER_URL}/todo/all`);
     xhr.send();
   }
@@ -92,7 +96,7 @@ export default class Todo extends Component {
     const xhr = new XMLHttpRequest();
     xhr.open('DELETE', `${SERVER_URL}/todo`);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send({ id });
+    xhr.send(JSON.stringify({ id }));
 
     // change state
     const newTodos = this.state.todos.filter(todo =>
