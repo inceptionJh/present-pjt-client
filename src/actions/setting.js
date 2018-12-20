@@ -51,7 +51,7 @@ export const setting_weather_disable = () => {
   return { type: SETTING_WEATHER_DISABLE };
 };
 
-export const setting_todou_enable = () => {
+export const setting_todo_enable = () => {
   return { type: SETTING_TODO_ENABLE };
 };
 
