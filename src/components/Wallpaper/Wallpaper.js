@@ -27,8 +27,8 @@ class Wallpaper extends Component {
   }
 
   componentDidMount = () => {
-    this.getRandomWallpaper();
-    setInterval(() => this.getRandomWallpaper(), PHOTO_UPDATE_DURATION);
+    // this.getRandomWallpaper();
+    // setInterval(() => this.getRandomWallpaper(), PHOTO_UPDATE_DURATION);
   };
 
   getRandomWallpaper() {
@@ -40,7 +40,15 @@ class Wallpaper extends Component {
 
   render() {
     return (
-      <img className="wallpaper" src={this.state.wallpaper} alt="wallpaper" />
+      // <img className="wallpaper" src={this.state.wallpaper} alt="wallpaper" />
+      <div class="video-container wallpaper">
+        <video loop autoPlay muted>
+          <source
+            src="https://s3.ap-northeast-2.amazonaws.com/present-video-new/8s1nok6ep6r1f65i34p2.hd.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </div>
     );
   }
 }
