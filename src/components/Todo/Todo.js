@@ -2,6 +2,9 @@ import './Todo.css';
 
 import React, { Component } from 'react';
 import TodoList from './TodoList/TodoList';
+import config from '../../config';
+
+const { SERVER_URL } = config();
 
 export default class Todo extends Component {
   constructor(props) {
@@ -22,14 +25,14 @@ export default class Todo extends Component {
   componentDidMount() {
     const xhr = new XMLHttpRequest();
     xhr.onload = function(todo) {
-      const todos = JSON.parse(this.responseText);
+      const todos = todo instanceof Array ? JSON.parse(this.responseText) : [];
       const uniqId = todos.reduce(
         (accu, curr) => (accu.id > curr.id ? accu.id : curr.id) + 1,
         { id: -1 }
       );
       todo.setState({ todos, uniqId });
     }.bind(xhr, this);
-    xhr.open('GET', 'http://localhost:5000/todo/all');
+    xhr.open('GET', `${SERVER_URL}/todo/all`);
     xhr.send();
   }
 
@@ -45,7 +48,7 @@ export default class Todo extends Component {
 
       // send DB
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://localhost:5000/todo');
+      xhr.open('POST', `${SERVER_URL}/todo`);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify(todo));
 
@@ -68,7 +71,7 @@ export default class Todo extends Component {
 
     // patch todo from server DB
     const xhr = new XMLHttpRequest();
-    xhr.open('PATCH', 'http://localhost:5000/todo');
+    xhr.open('PATCH', `${SERVER_URL}/todo`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(todo));
 
@@ -87,7 +90,7 @@ export default class Todo extends Component {
   handleOnDeleteClick(id) {
     // delete todo from server DB
     const xhr = new XMLHttpRequest();
-    xhr.open('DELETE', 'http://localhost:5000/todo');
+    xhr.open('DELETE', `${SERVER_URL}/todo`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send({ id });
 
