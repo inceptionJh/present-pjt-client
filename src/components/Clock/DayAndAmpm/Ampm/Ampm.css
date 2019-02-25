@@ -1,0 +1,11 @@
+.ampm {
+  flex: 3;
+  font-size: 100px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.date > span {
+  transform: translateY(100%);
+}

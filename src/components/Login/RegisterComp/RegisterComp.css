@@ -1,0 +1,36 @@
+.registerComp {
+  position: absolute;
+  left: 50%;
+  top: 32%;
+  width: 50%;
+  transform: translateX(-50%);
+  font-family: "Exo 2", sans-serif;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  transition: color 0.5s ease-in-out;
+  border: none;
+  /* background: transparent; */
+}
+
+
+/* .login-value {
+  all: "unset"
+} */
+
+input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  font-family: "Exo 2", sans-serif;
+}
+
+.login-buttom {
+  position: absolute;
+  left: 20%;
+  bottom: 0%;
+}
